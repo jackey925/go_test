@@ -10,3 +10,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=build /go/src/test/app .
 CMD ["./app"]
+
+
+
+
