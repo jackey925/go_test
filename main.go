@@ -1,9 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"html"
+	"log"
+	"net/http"
+)
 
 func main()  {
-	for i:=0; i< 10;i++{
-		fmt.Println(fmt.Sprintf("jee %d",i+1))
-	}
+	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	})
+	log.Fatal(http.ListenAndServe(":9200", nil))
 }
