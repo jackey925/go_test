@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"html"
 	"log"
 	"net/http"
 )
@@ -10,7 +9,7 @@ import (
 func main()  {
 	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 
-		fmt.Fprintf(w, "Hello kubernetes %q\n", html.EscapeString(r.RemoteAddr))
+		fmt.Fprintf(w, "Hello kubernetes %q\v", r.Header)
 	})
 	log.Fatal(http.ListenAndServe(":9200", nil))
 }
